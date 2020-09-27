@@ -25,18 +25,18 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 st.write("""
-# COVID 19 Live Dataset 🚨
-[Coronavirus COVID19 API](https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#81447902-b68a-4e79-9df9-1b371905e9fa) is used to get the data in this app.
+# مجموعه داده زنده کوید ۱۹ 🚨
+[وب سرویس زنده کرونا ویروس کوید ۱۹](https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#81447902-b68a-4e79-9df9-1b371905e9fa)برای دریافت داده ها در این برنامه استفاده می شود.
 """)
 
 st.write('''
-The coronavirus COVID-19 pandemic is the defining global health crisis of our time and the greatest challenge we have faced since World War Two.
-Since its emergence in Asia late last year, the virus has spread to every continent except Antarctica.
+ویروس کرونا ویروس COVID-19 بحران تعیین کننده سلامت جهانی در زمان ما و بزرگترین چالشی است که از زمان جنگ جهانی دوم با آن روبرو بوده ایم.
+از زمان ظهور در آسیا در اواخر سال گذشته ، ویروس به همه قاره ها به جز قطب جنوب گسترش یافته است.
 
-But the pandemic is much more than a health crisis, it is also an unprecedent socio-economic crisis.
+اما همه گیری بسیار فراتر از بحران سلامت است ، همچنین یک بحران اقتصادی-اجتماعی بی سابقه است.
 
-Stressing every one of the countries it touches, it has the potential to create devastating social,
-economic and political effects that will leave deep and longstanding scars.''')
+با تأکید بر هر یک از کشورهایی که لمس می کند ، این امکان را دارد که اجتماعی ویرانگر ایجاد کند ،
+اثرات اقتصادی و سیاسی که جای زخمهای عمیق و طولانی مدت ایجاد خواهد کرد.''')
 
 # st.markdown('<iframe src="https://datawrapper.dwcdn.net/WIdnc/5/" style="height:400px;width:800px;" title="Iframe Example"></iframe>', unsafe_allow_html=True)
 st.markdown('<iframe src="https://datawrapper.dwcdn.net/JjgUp/2/" style="height:450px;width:700px;" title="Iframe Example"></iframe>', unsafe_allow_html=True)
@@ -49,15 +49,15 @@ top_row = pd.DataFrame({'Country':['Select a Country'],'Slug':['Empty'],'ISO2':[
 # Concat with old DataFrame and reset the Index.
 df0 = pd.concat([top_row, df0]).reset_index(drop = True)
 
-st.sidebar.header('Filter your search')
-graph_type = st.sidebar.selectbox('Cases type',('confirmed','deaths','recovered'))
-st.sidebar.subheader('Search by country 📌')
-country = st.sidebar.selectbox('Country',df0.Country)
-country1 = st.sidebar.selectbox('Compare with another Country',df0.Country)
-if st.sidebar.button('Refresh Data'):
+st.sidebar.header('جستجوی خود را فیلتر کنید')
+graph_type = st.sidebar.selectbox('Cases type',('تایید شده','فوت شدگان','بهبود یافتگان'))
+st.sidebar.subheader('جستجو بر اساس کشور 📌')
+country = st.sidebar.selectbox('نام کشور',df0.Country)
+country1 = st.sidebar.selectbox('مقایسه با کشور دیگر',df0.Country)
+if st.sidebar.button('تازه کردن داده ها'):
   raise RerunException(st.ScriptRequestQueue.RerunData(None))
 
-if country != 'Select a Country':
+if country != 'یک کشور را انتخاب کنید':
     slug = df0.Slug[df0['Country']==country].to_string(index=False)[1:]
     url = 'https://api.covid19api.com/total/dayone/country/'+slug+'/status/'+graph_type
     r = requests.get(url)
@@ -70,7 +70,7 @@ if country != 'Select a Country':
     fig.update_layout(dict1 = layout, overwrite = True)
     fig.add_trace(go.Scatter(x=df.Date, y=df.Cases, mode='lines', name=country))
     
-    if country1 != 'Select a Country':
+    if country1 != 'یک کشور را انتخاب کنید':
         slug1 = df0.Slug[df0['Country']==country1].to_string(index=False)[1:]
         url = 'https://api.covid19api.com/total/dayone/country/'+slug1+'/status/'+graph_type
         r = requests.get(url)
@@ -126,4 +126,4 @@ else:
     # data.lat = data.lat.astype(float)
     # st.dataframe(data)
     # st.map(data)
-st.sidebar.subheader(""":smile: [Gagan Verma](https://www.linkedin.com/in/g4g4nv3rm4/)""")
+st.sidebar.subheader(""":smile: []()""")
