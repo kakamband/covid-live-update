@@ -50,7 +50,7 @@ top_row = pd.DataFrame({'Country':['Select a Country'],'Slug':['Empty'],'ISO2':[
 df0 = pd.concat([top_row, df0]).reset_index(drop = True)
 
 st.sidebar.header('جستجوی خود را فیلتر کنید')
-graph_type = st.sidebar.selectbox('Cases type',('تایید شده','فوت شدگان','بهبود یافتگان'))
+graph_type = st.sidebar.selectbox('نوع کیس آماری خود را از بین تایید شده ، فوت شدگان ، بهبود یافتگان انتخاب کنید',('confirmed','deaths','recovered'))
 st.sidebar.subheader('جستجو بر اساس کشور 📌')
 country = st.sidebar.selectbox('نام کشور',df0.Country)
 country1 = st.sidebar.selectbox('مقایسه با کشور دیگر',df0.Country)
