@@ -57,7 +57,7 @@ country1 = st.sidebar.selectbox('مقایسه با کشور دیگر',df0.Countr
 if st.sidebar.button('تازه کردن داده ها'):
   raise RerunException(st.ScriptRequestQueue.RerunData(None))
 
-if country != 'یک کشور را انتخاب کنید':
+if country != 'Select a Country':
     slug = df0.Slug[df0['Country']==country].to_string(index=False)[1:]
     url = 'https://api.covid19api.com/total/dayone/country/'+slug+'/status/'+graph_type
     r = requests.get(url)
@@ -70,7 +70,7 @@ if country != 'یک کشور را انتخاب کنید':
     fig.update_layout(dict1 = layout, overwrite = True)
     fig.add_trace(go.Scatter(x=df.Date, y=df.Cases, mode='lines', name=country))
     
-    if country1 != 'یک کشور را انتخاب کنید':
+    if country1 != 'Select a Country':
         slug1 = df0.Slug[df0['Country']==country1].to_string(index=False)[1:]
         url = 'https://api.covid19api.com/total/dayone/country/'+slug1+'/status/'+graph_type
         r = requests.get(url)
